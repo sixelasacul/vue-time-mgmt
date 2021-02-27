@@ -1,17 +1,21 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Timers v-bind:list='timers' />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Timers from './components/Timers'
 
 export default {
   name: 'App',
+  data: function() {
+    return {
+      timers: ['in meeting', 'in dev', 'not working']
+    }
+  },
   components: {
-    HelloWorld
+    Timers
   }
 }
 </script>

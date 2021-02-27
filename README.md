@@ -1,4 +1,4 @@
-# test
+# vue-time-mgmt
 
 ## Project setup
 ```
