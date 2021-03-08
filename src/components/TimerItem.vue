@@ -3,16 +3,20 @@ passing events from the parent to the children. We may benefit from having
 one central interval to power any timer.
 
 <template>
-  <div>
-    <button v-on:click='onToggle'>{{ name }}</button>
-    <p>{{ elapsedTime }}</p>
-  </div>
+  <v-list-item-content>
+    <v-list-item-title>
+      {{ name }}
+    </v-list-item-title>
+    <v-list-item-subtitle>
+      {{ elapsedTime }}
+    </v-list-item-subtitle>
+  </v-list-item-content>
 </template>
 
 <script>
-import {formatTimer, initialTime, second} from '../utils/timer'
+import { formatTimer, initialTime, second } from "../utils/timer"
 export default {
-  name: 'Timer',
+  name: "TimerItem",
   props: {
     name: {
       type: String,
@@ -21,6 +25,11 @@ export default {
     isEnabled: {
       type: Boolean,
       required: true
+    },
+    baseTime: {
+      type: Number,
+      required: false,
+      default: initialTime
     },
     onToggle: {
       type: Function,
@@ -34,8 +43,13 @@ export default {
   },
   data() {
     return {
-      time: initialTime,
+      time: this.baseTime,
       interval: null
+    }
+  },
+  computed: {
+    elapsedTime() {
+      return formatTimer(this.time)
     }
   },
   created() {
@@ -44,23 +58,16 @@ export default {
   beforeDestroy() {
     clearInterval(this.interval)
   },
-  computed: {
-    elapsedTime() {
-      return formatTimer(this.time)
-    }
-  },
   methods: {
     tick() {
-      if(this.isEnabled) {
+      if (this.isEnabled) {
         this.time = this.time + second
         this.onTick(this.time)
       }
     }
   }
-  
 }
 </script>
 
 <style>
-
 </style>
