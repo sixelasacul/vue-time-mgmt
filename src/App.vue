@@ -4,7 +4,7 @@
       app
       flat
       outlined
-      rounded=""
+      rounded
     >
       <v-app-bar-title> Time Management </v-app-bar-title>
     </v-app-bar>
@@ -46,14 +46,20 @@ import TimersList from './components/TimersList.vue'
 import TimersMgmt from './components/TimersMgmt.vue'
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     TimersMgmt,
     TimersList
   },
   data: function () {
     return {
-      timers: ["In Team Meeting", "In Development", "Not Working", "Helping"],
+      timers: [
+        'In Team Meeting',
+        'In Development',
+        'Not Working',
+        'Helping',
+        'Code Reviewing'
+      ],
       dialog: false
     }
   },

@@ -9,7 +9,6 @@ timer.
         v-for="timer in sortedInternalTimers"
         :key="timer.id"
         two-line
-        :disabled="timer.isEnabled"
         @click="timer.onToggle"
       >
         <timer-item
@@ -74,15 +73,12 @@ export default {
   },
   methods: {
     onToggle(timerId) {
-      // We want to have only one timer enabled at a time
-      const timers = this.internalTimers.map((ot) => ({
-        ...ot,
-        isEnabled: false
-      }))
-      const timerIndex = timers.findIndex(({ id }) => id === timerId)
-      const timer = timers.splice(timerIndex, 1)[0]
-      timers.push({ ...timer, isEnabled: !timer.isEnabled })
-      this.internalTimers = timers
+      this.internalTimers = this.internalTimers.map(timer => {
+        if(timer.id === timerId) {
+          return {...timer, isEnabled: !timer.isEnabled}
+        }
+        return {...timer, isEnabled: false}
+      })
     }
   }
 }

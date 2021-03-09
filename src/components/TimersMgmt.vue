@@ -17,7 +17,6 @@
         <v-btn
           outlined
           color="danger"
-          class="mx-4"
         >
           Remove
         </v-btn>
@@ -28,6 +27,14 @@
           color="primary"
         >
           Add
+        </v-btn>
+        <v-btn
+          outlined
+          color="danger"
+          class="mx-4"
+          @click="reset"
+        >
+          Reset
         </v-btn>
       </v-list-item>
     </v-list>
@@ -41,6 +48,11 @@ export default {
     list: {
       type: Array,
       required: true
+    }
+  },
+  methods: {
+    reset() {
+      localStorage.clear()
     }
   }
 }

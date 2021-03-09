@@ -33,7 +33,8 @@ export default {
     },
     onToggle: {
       type: Function,
-      required: true
+      required: false,
+      default: () => {}
     },
     onTick: {
       type: Function,
